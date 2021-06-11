@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// for Golang
+package helloworld;
+
+option go_package = "gogRPC/helloworld";
+
+service HelloService {
+    // This thing just says Hello to anyone
+    // SayHello('Euler') -> Hello, Euler!
+    rpc SayHello(HelloReq) returns (HelloResp) {};
+    
+    // Strict Version responds only to requests which have `Name` length
+    // less than 10 characters
+    rpc SayHi(HelloReq) returns (HelloResp) {};
+}
+
+service Health {
+    rpc Check(HealthParameter) returns (HelloResp) {};
+}
+
+message HelloReq {
+    string Name = 1;
+}
+
+message HelloResp {
+    string Result = 1;
+}
+
+message HealthParameter {}
